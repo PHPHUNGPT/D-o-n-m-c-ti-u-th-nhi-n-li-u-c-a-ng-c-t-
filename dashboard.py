@@ -5,30 +5,19 @@ import plotly.express as px
 import pandas as pd
 import dash_bootstrap_components as dbc
 
-# In log khi bắt đầu đọc dữ liệu
-print("Loading data...")
-try:
-    df = pd.read_csv('auto-mpg-processed.csv')
-    print("Data loaded successfully")
-except FileNotFoundError:
-    print("Data file not found. Please check the file path.")
-    raise
+# Đọc dữ liệu đã tiền xử lý
+df = pd.read_csv('auto-mpg-processed.csv')
 
 # Tạo ứng dụng Dash
-print("Initializing Dash app...")
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-print("Dash app initialized")
 
-# Khởi tạo đối tượng server cho Gunicorn
+# Khởi tạo đối tượng server cho Gunicorn và Waitress
 server = app.server
-print("Gunicorn server initialized")
 
 # Lấy danh sách các biến
 variables = df.columns
-print("Variables extracted:", variables)
 
 # Layout của dashboard
-print("Setting up layout...")
 app.layout = dbc.Container([
     dbc.Row(dbc.Col(html.H1("Dashboard Auto MPG", className="text-center mb-4"), width=12)),
 
@@ -108,7 +97,6 @@ app.layout = dbc.Container([
      Input('scatter-y-dropdown', 'value')]
 )
 def update_scatter_plot(x_var, y_var):
-    print(f"Updating scatter plot: X={x_var}, Y={y_var}")
     fig = px.scatter(df, x=x_var, y=y_var, color='cylinders', title=f"Biểu đồ phân tán: {x_var} vs {y_var}")
     return fig
 
@@ -118,7 +106,6 @@ def update_scatter_plot(x_var, y_var):
     [Input('pie-dropdown', 'value')]
 )
 def update_pie_chart(pie_var):
-    print(f"Updating pie chart: Variable={pie_var}")
     fig = px.pie(df, names=pie_var, title=f"Biểu đồ Pie: {pie_var}")
     return fig
 
@@ -128,7 +115,6 @@ def update_pie_chart(pie_var):
     [Input('hist-dropdown', 'value')]
 )
 def update_histogram(hist_var):
-    print(f"Updating histogram: Variable={hist_var}")
     fig = px.histogram(df, x=hist_var, title=f"Biểu đồ cột phân bố: {hist_var}")
     return fig
 
@@ -138,7 +124,6 @@ def update_histogram(hist_var):
     [Input('line-y-dropdown', 'value')]
 )
 def update_line_plot(y_var):
-    print(f"Updating line plot: Variable={y_var}")
     fig = px.line(df, x='model year', y=y_var, title=f"Biểu đồ đường: {y_var} theo năm")
     return fig
 
@@ -148,11 +133,9 @@ def update_line_plot(y_var):
     [Input('boxplot-dropdown', 'value')]
 )
 def update_boxplot(box_var):
-    print(f"Updating boxplot: Variable={box_var}")
     fig = px.box(df, y=box_var, title=f"Boxplot: {box_var}")
     return fig
 
 # Chạy ứng dụng
 if __name__ == '__main__':
-    print("Starting app server...")
     app.run_server(debug=True)

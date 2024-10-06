@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT dashboard:app
+web: waitress-serve --port=$PORT dashboard:server
