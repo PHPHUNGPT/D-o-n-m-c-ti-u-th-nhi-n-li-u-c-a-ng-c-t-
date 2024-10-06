@@ -7,9 +7,9 @@ from sklearn.preprocessing import StandardScaler
 linear_model = joblib.load('models/linear_model.pkl')
 ridge_model = joblib.load('models/ridge_model.pkl')
 mlp_model = joblib.load('models/mlp_model.pkl')
-bagging_linear = joblib.load('models/bagging_linear_model.pkl')
-bagging_ridge = joblib.load('models/bagging_ridge_model.pkl')
-bagging_mlp = joblib.load('models/bagging_mlp_model.pkl')
+bagging_linear = joblib.load('models/bagging_linear.pkl')
+bagging_ridge = joblib.load('models/bagging_ridge.pkl')
+bagging_mlp = joblib.load('models/bagging_mlp.pkl')
 scaler = joblib.load('models/scaler.pkl')
 
 # Giao diện ứng dụng Streamlit
