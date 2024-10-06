@@ -1,5 +1,5 @@
+gunicorn
 dash
 dash-bootstrap-components
-gunicorn
 plotly
 pandas

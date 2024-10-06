@@ -11,6 +11,9 @@ df = pd.read_csv('data/auto-mpg-processed.csv')
 # Tạo ứng dụng Dash
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+# Khởi tạo đối tượng server cho Gunicorn
+server = app.server
+
 # Lấy danh sách các biến
 variables = df.columns
 
