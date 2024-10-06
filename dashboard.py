@@ -6,7 +6,7 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 
 # Đọc dữ liệu đã tiền xử lý
-df = pd.read_csv('data/auto-mpg-processed.csv')
+df = pd.read_csv('auto-mpg-processed.csv')
 
 # Tạo ứng dụng Dash
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
