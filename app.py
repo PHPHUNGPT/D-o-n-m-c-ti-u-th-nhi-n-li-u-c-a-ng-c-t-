@@ -51,6 +51,10 @@ if st.button("Dự đoán"):
 
         # Trung bình các dự đoán từ 3 mô hình
         prediction = (y_pred_bagging_linear + y_pred_bagging_ridge + y_pred_bagging_mlp) / 3
+
+    # Nếu kết quả dự đoán là âm, nhân với -1 để chuyển thành dương
+    if prediction[0] < 0:
+        prediction[0] = -prediction[0]
     
     # Hiển thị kết quả dự đoán
     st.success(f"Dự đoán mức tiêu thụ nhiên liệu (mpg): {prediction[0]:.2f}")
