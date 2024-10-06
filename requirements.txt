@@ -1,4 +1,4 @@
-gunicorn
+waitress
 dash
 dash-bootstrap-components
 plotly
